@@ -50,18 +50,34 @@ const AddCommnentForm: React.FC = () => {
       <Form.Item
         name={["user", "name"]}
         label="Name"
-        rules={[{ required: true }]}
+        rules={[
+          { required: true, message: "Username is required!" },
+          {
+            validator: (_, value) => {
+              if (value && (value.length < 10 || value.length > 100)) {
+                return Promise.reject(
+                  "Content must be between 10 and 100 characters!"
+                );
+              }
+              return Promise.resolve();
+            },
+          },
+        ]}
       >
         <Input />
       </Form.Item>
-      <Form.Item
+      {/* <Form.Item
         name={["user", "email"]}
         label="Email"
         rules={[{ type: "email" }]}
       >
         <Input />
-      </Form.Item>
-      <Form.Item name={["user", "content"]} label="Content">
+      </Form.Item> */}
+      <Form.Item
+        name={["user", "content"]}
+        label="Content"
+        rules={[{ required: true }]}
+      >
         <Input.TextArea />
       </Form.Item>
       <Form.Item label={null}>
