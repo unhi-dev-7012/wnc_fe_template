@@ -18,12 +18,12 @@ export interface Post {
 export const api = {
   fetchPosts: async (): Promise<Post[]> => {
     const response = await apiClient.get("/posts");
-    return response.data;
+    return response.data.data;
   },
 
   fetchComments: async (postId: number): Promise<Comment[]> => {
     const response = await apiClient.get(`/posts/${postId}/comments`);
-    return response.data;
+    return response.data.data;
   },
 
   addComment: async (postId: number, comment: Comment): Promise<void> => {

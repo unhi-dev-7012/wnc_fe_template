@@ -37,19 +37,22 @@ const CommentPage: React.FC = () => {
       dataIndex: "date",
       key: "date",
     },
-    {
-      title: "Hành động",
-      render: (_: any, record: any) => (
-        <Button onClick={() => handleAddComment(record.id)}>
-          Tạo bình luận mới
-        </Button>
-      ),
-    },
   ];
 
   return (
     <div>
-      <h2>Danh sách bài viết</h2>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h2>Danh sách bài viết</h2>
+        <Button onClick={() => handleAddComment(Number(postId))}>
+          Tạo bình luận mới
+        </Button>
+      </div>
       <TableComponent data={comments} columns={columns} rowKey="id" />
     </div>
   );

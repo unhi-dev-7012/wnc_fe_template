@@ -28,26 +28,28 @@ const PostPage: React.FC = () => {
     },
     {
       title: "Chuyên mục",
-      dataIndex: "category",
-      key: "category",
+      dataIndex: "topic",
+      key: "topic",
     },
     {
       title: "Nhãn",
-      dataIndex: "tags",
-      render: (tags: string[]) => (
+      dataIndex: "labels",
+      render: (labels: string) => (
         <>
-          {tags.map((tag) => (
-            <Tag color="blue" key={tag}>
-              {tag}
-            </Tag>
-          ))}
+          <Tag color="blue" key={labels}>
+            {labels}
+          </Tag>
         </>
       ),
     },
     {
       title: "Ngày đăng",
-      dataIndex: "date",
-      key: "date",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (createdAt: string) => {
+        const date = new Date(createdAt);
+        return date.toLocaleString(); // You can customize the format here
+      },
     },
     {
       title: "Hành động",
